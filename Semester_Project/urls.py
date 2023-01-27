@@ -17,11 +17,20 @@ Including another URLconf
 #  Created by Curtis Poon for SEPT 4IT3.
 #
 #  I have not shared my code with anyone without the required consent and annotations being present in their documentation. I have also ensured that all functions are referenced from the location that I sourced them from.
+#
+#  I have not shared my code with anyone without the required consent and annotations being present in their documentation. I have also ensured that all functions are referenced from the location that I sourced them from.
+#
+#  I have not shared my code with anyone without the required consent and annotations being present in their documentation. I have also ensured that all functions are referenced from the location that I sourced them from.
+#
+#  I have not shared my code with anyone without the required consent and annotations being present in their documentation. I have also ensured that all functions are referenced from the location that I sourced them from.
+#
+#  I have not shared my code with anyone without the required consent and annotations being present in their documentation. I have also ensured that all functions are referenced from the location that I sourced them from.
 
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', 'index.html'),
+    path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
 ]
