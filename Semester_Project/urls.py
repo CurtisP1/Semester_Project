@@ -26,11 +26,18 @@ Including another URLconf
 #
 #  I have not shared my code with anyone without the required consent and annotations being present in their documentation. I have also ensured that all functions are referenced from the location that I sourced them from.
 
+
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from django.views.generic import TemplateView
+from django.urls import include, path
+
+from . import views
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html')),
-    path('admin/', admin.site.urls),
-]
+                  path('', views.index, name='index.html'),
+                  path("admin/", admin.site.urls),
+                  path("dashboard/", include('dashboard.urls', namespace='dashboard')),
+                  path('account/', include('django.contrib.auth.urls')),
+                  path("tabulation/", include('tabulation.urls', namespace='tabulation'))
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
