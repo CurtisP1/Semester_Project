@@ -1,7 +1,11 @@
+import datetime
 import json
+import time
 
 import numpy as np
 from django.shortcuts import render
+
+from .models import SineData
 
 
 class SineWaveData:
@@ -17,9 +21,18 @@ class SineWaveData:
 
 def index(request):
     template = 'dashboard/sinewave.html'
-    data = SineWaveData()
+    if request.method == "POST":
+
+        start_time = request.POST['start_time']
+        end_time = request.POST['end_time']
+        data = SineData.get_data(start_time, end_time)
+    else:
+        time_scale = (time.time(), time.time() - datetime.timedelta(minutes=5))
+        data = SineData.get_data(time.time(), time.time() - datetime.timedelta(minutes=5))
     context = {
+        "time_scale": time_scale,
         "data": data,
+
     }
     return render(request, template, context)
 

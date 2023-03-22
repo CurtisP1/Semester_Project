@@ -10,11 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-#  Copyright (c) 2023.
-#  Created by Curtis Poon for SEPT 4IT3.
-#
-#  I have not shared my code with anyone without the required consent and annotations being present in their documentation. I have also ensured that all functions are referenced from the location that I sourced them from.
-
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +25,10 @@ SECRET_KEY = 'django-insecure-iqhf=l%!%e3knbcq(y@f7#5g0njxlvq_5n4$30lx92qwox%dc8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1', 'https://*.learningdjango.tech', 'https://*.localhost.testing']
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_MASKED = True
 
 # Application definition
 
@@ -81,8 +80,24 @@ WSGI_APPLICATION = 'Semester_Project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': os.path.join(BASE_DIR, 'configs', 'my.cnf'),
+        },
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://redis:6379',
+        'TIMEOUT': 60,
+        'OPTIONS': {
+            'db': '1',
+            'parser_class': 'redis.connection.PythonParser',
+            'pool_class': 'redis.BlockingConnectionPool',
+        },
+        'KEY_PREFIX': 'DJANGO'
     }
 }
 
@@ -128,3 +143,12 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MQTT_SERVER = 'mqtt.learningdjango.tech'
+MQTT_PORT = 1883
+MQTT_KEEPALIVE = 60
+MQTT_USER = ''
+MQTT_PASSWORD = ''
+MQTT_TOPICS = [
+    'noise_gen/signal/sinewave',
+]
