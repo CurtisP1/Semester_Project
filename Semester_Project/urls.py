@@ -26,9 +26,10 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-                  path('', views.index, name='index.html'),
+                  path('', views.index, name='index'),
                   path("admin/", admin.site.urls),
                   path("dashboard/", include('dashboard.urls', namespace='dashboard')),
-                  path('account/', include('django.contrib.auth.urls')),
-                  path("tabulation/", include('tabulation.urls', namespace='tabulation'))
+                  path('accounts/', include('django.contrib.auth.urls')),
+                  path("tabulation/", include('tabulation.urls', namespace='tabulation')),
+                  path("accounts/", include('accounts.urls'))
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

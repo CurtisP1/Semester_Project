@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "dashboard.apps.DashboardConfig",
     "tabulation.apps.TabulationConfig",
+    "accounts.apps.AccountsConfig"
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,10 @@ MIDDLEWARE = [
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
-ROOT_URLCONF = "SemesterProject.urls"
+ROOT_URLCONF = "Semester_Project.urls"
+
+LOGIN_REDIRECT_URL = "/accounts/"
+LOGOUT_REDIRECT_URL = "/"
 
 TEMPLATES = [
     {
@@ -74,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "SemesterProject.wsgi.application"
+WSGI_APPLICATION = "Semester_Project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
