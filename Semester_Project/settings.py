@@ -29,6 +29,10 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1', 'https://*.learningdjango.tech', 'https://*.localhost.testing']
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_MASKED = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,8 +46,8 @@ INSTALLED_APPS = [
     "tabulation.apps.TabulationConfig",
     "accounts.apps.AccountsConfig",
     'api.apps.ApiConfig',
-    'rest_framework'
-
+    'rest_framework',
+    'fourier.apps.FourierConfig'
 ]
 
 MIDDLEWARE = [
@@ -158,6 +162,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'images')
+MEDIA_URL = '/images/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -170,6 +177,7 @@ MQTT_USER = ''
 MQTT_PASSWORD = ''
 MQTT_TOPICS = [
     'noise_gen/signal/sinewave',
+    'noise_gen/signal/heartbeat'
 ]
 
 REST_FRAMEWORK = {

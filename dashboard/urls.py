@@ -6,4 +6,5 @@ app_name = 'dashboard'
 urlpatterns = [
     path('', views.index, name='index'),
     path("sinewave", views.sinewave, name='sinewave'),
+    path("heartbeat/", views.heartbeat, name='sinewave'),
 ]
