@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "dashboard.apps.DashboardConfig",
     "tabulation.apps.TabulationConfig",
-    "accounts.apps.AccountsConfig"
+    "accounts.apps.AccountsConfig",
+    'api.apps.ApiConfig',
+    'rest_framework'
+
 ]
 
 MIDDLEWARE = [
@@ -168,3 +171,8 @@ MQTT_PASSWORD = ''
 MQTT_TOPICS = [
     'noise_gen/signal/sinewave',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

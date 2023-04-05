@@ -2,20 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ page_title }}</title>
+    <title>{{ django|title }}</title>
     {% load static %}
-    <meta name="viewport" content="width=device-width initial-scale=1.6"/>
+    <meta name="viewport" content="width=device-width initial-scale=1.0"/>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" crossorigin="anonymous">
     <script src="{% static 'js/bootstrap.bundle.js' %}"
             crossorigin="anonymous"></script>
     <link href="{% static 'icons/bootstrap-icons.css' %}" rel="stylesheet" crossorigin="anonymous" type="text/css">
     <link href="{% static 'css/inversion.css' %}" rel="stylesheet" crossorigin="anonymous" type="text/css">
-    <link rel="icon" type="image/x-icon" href="/static/icons/android.svg">
     {% block heading_content %}
     {% endblock %}
-
 </head>
-{% csrf_token %}
+<body>
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -85,7 +83,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/login" class="nav-link px-0 align-middle">
+                        <a href="/accounts/login" class="nav-link px-0 align-middle">
                             <img class="fs-4 inv" src="{% static 'icons/people-fill.svg' %}"/> <span
                                 class="ms-1 d-none d-sm-inline">Login</span> </a>
                     </li>
@@ -96,20 +94,19 @@
                     </li>
                 </ul>
                 <hr>
-
                 <div class="dropdown pb-4 px-sm-2 px-0 fixed-bottom">
                     {% if user.is_authenticated %}
                         <a href="#"
                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle "
                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{% static 'images/'|add:profile_picture %}" alt="{{ user.username }}"
+                            <img src="{% static 'images/' %}{{ profile_picture }}" alt="{{ user.username }}"
                                  width="30" height="30"
                                  class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">Hello, {{ user.username }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="/accounts/settings">Settings</a></li>
-                            <li><a class="dropdown-item" href="/accounts">Profile</a></li>
+                            <li><a class="dropdown-item" href="/accounts/">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -127,14 +124,12 @@
                             <li><a class="dropdown-item" href="/accounts/login">Login</a></li>
                         </ul>
                     {% endif %}
-
                 </div>
             </div>
         </div>
         <div class="col py-3">
             {% block content %}
             {% endblock %}
-
         </div>
     </div>
 </div>
@@ -146,5 +141,4 @@
 </footer>
 {% block scripts %}
 {% endblock %}
-
 </html>
