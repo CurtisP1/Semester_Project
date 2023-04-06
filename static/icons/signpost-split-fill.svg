@@ -1,3 +1,11 @@
+<!--
+  - Copyright (c) 2023 - All rights reserved.
+  - Created by Curtis Poon for PROCTECH 4IT3/SEP 6IT3.
+  - SoA Notice: I Curtis Poon, 400263978 certify that this material is my original work.
+  - I certify that no other person's work has been used without due acknowledgement.
+  - I have also not made my work available to anyone else without their due acknowledgement.
+  -->
+
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-signpost-split-fill" viewBox="0 0 16 16">
   <path d="M7 16h2V6h5a1 1 0 0 0 .8-.4l.975-1.3a.5.5 0 0 0 0-.6L14.8 2.4A1 1 0 0 0 14 2H9v-.586a1 1 0 0 0-2 0V7H2a1 1 0 0 0-.8.4L.225 8.7a.5.5 0 0 0 0 .6l.975 1.3a1 1 0 0 0 .8.4h5v5z"/>
 </svg>
